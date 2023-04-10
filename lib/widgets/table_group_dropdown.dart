@@ -156,8 +156,8 @@ class _TableGroupDropdownState extends State<TableGroupDropdown>
                   mainAxisSize: MainAxisSize.min,
                   children: List.generate(
                     widget.columns.length + 1,
-                    (index) {
-                      if (widget.columns.length == index) {
+                    (columnIndex) {
+                      if (widget.columns.length == columnIndex) {
                         return _TableCell(
                           cellHeight: widget.cellHeight,
                           cellWidth: widget.cellWidth,
@@ -181,11 +181,7 @@ class _TableGroupDropdownState extends State<TableGroupDropdown>
                         cellHeight: widget.cellHeight,
                         cellWidth: widget.cellWidth,
                         child: _isExpanded
-                            ? Center(
-                                child: Text(
-                                  index.toString(),
-                                ),
-                              )
+                            ? widget.columns[columnIndex].child
                             : const SizedBox.shrink(),
                       );
                     },

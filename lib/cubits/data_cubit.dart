@@ -62,4 +62,40 @@ class DataCubit extends Cubit<List<TableGroupModel>> {
 
     emit(tableGroupsList);
   }
+
+  void addNewColumn(TableGroupModel tableGroup) {
+    final List<TableGroupModel> tableGroupsList = List.from(state);
+    int tableGroupItemIndex = tableGroupsList.indexOf(tableGroup);
+    List<TableGroupItemColumn> allColumns = List.from(tableGroup.columns);
+
+    allColumns.add(
+      TableGroupItemColumn(
+        cellHeight: kMinInteractiveDimension,
+        cellWidth: 100,
+        child: Text("Row: 0 , Col: ${allColumns.length}"),
+      ),
+    );
+
+    tableGroupsList[tableGroupItemIndex] = tableGroup.copyWith(
+      columns: allColumns,
+    );
+
+    emit(tableGroupsList);
+  }
+
+  void addNewRow(TableGroupModel tableGroup) {
+    final List<TableGroupModel> tableGroupsList = List.from(state);
+    int tableGroupItemIndex = tableGroupsList.indexOf(tableGroup);
+    List<TableGroupItemRow> allRows = List.from(tableGroup.rows);
+
+    allRows.add(
+      TableGroupItemRow(),
+    );
+
+    tableGroupsList[tableGroupItemIndex] = tableGroup.copyWith(
+      rows: allRows,
+    );
+
+    emit(tableGroupsList);
+  }
 }

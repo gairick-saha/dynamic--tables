@@ -27,9 +27,8 @@ class _TableData extends StatelessWidget {
                 (rowIndex) {
                   if (rowIndex == tableGroup.rows.length) {
                     return _TableCell(
-                      onTap: () {
-                        print('Add new row item');
-                      },
+                      onTap: () =>
+                          context.read<DataCubit>().addNewRow(tableGroup),
                       cellWidth: 150,
                       cellHeight: kMinInteractiveDimension,
                       shape: NonUniformBorder(
@@ -80,33 +79,33 @@ class _TableData extends StatelessWidget {
                 tableGroup.rows.length + 1,
                 (rowIndex) {
                   /// "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
-                  // if (rowIndex == tableGroup.rows.length) {
-                  //   return Row(
-                  //     mainAxisSize: MainAxisSize.min,
-                  //     children: List.generate(
-                  //       tableGroup.columns.length + 1,
-                  //       (columnIndex) => _TableCell(
-                  //         cellWidth: 100,
-                  //         cellHeight: kMinInteractiveDimension,
-                  //         shape: NonUniformBorder.all(
-                  //           width: 0.4,
-                  //           color: tableGroup.tableColor,
-                  //           borderRadius: BorderRadius.zero,
-                  //         ),
-                  //         // child: Padding(
-                  //         //   padding: const EdgeInsets.all(4.0),
-                  //         //   child: Center(
-                  //         //     child: Text(
-                  //         //       "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
-                  //         //       softWrap: true,
-                  //         //     ),
-                  //         //   ),
-                  //         // ),
-                  //         child: const SizedBox.shrink(),
-                  //       ),
-                  //     ),
-                  //   );
-                  // }
+                  if (rowIndex == tableGroup.rows.length) {
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        tableGroup.columns.length + 1,
+                        (columnIndex) => _TableCell(
+                          cellWidth: 100,
+                          cellHeight: kMinInteractiveDimension,
+                          shape: NonUniformBorder.all(
+                            width: 0.4,
+                            color: tableGroup.tableColor,
+                            borderRadius: BorderRadius.zero,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Center(
+                              child: Text(
+                                "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                                softWrap: true,
+                              ),
+                            ),
+                          ),
+                          // child: const SizedBox.shrink(),
+                        ),
+                      ),
+                    );
+                  }
                   return Row(
                     mainAxisSize: MainAxisSize.min,
                     children: List.generate(

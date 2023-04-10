@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.only(right: 10.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: tableGroups
               .map(
                 (tableGroup) => _buildTableGroupItem(
