@@ -35,6 +35,7 @@ class TableGroupItem extends StatelessWidget {
             radius: BorderRadius.circular(8.0),
             color: tableGroup.tableColor,
             title: tableGroup.tableName,
+            subtitle: "${tableGroup.rows.length} items",
             onExpansionChanged: onExpansionChanged,
             initiallyExpanded: tableGroup.expanded,
             cellWidth: 100,

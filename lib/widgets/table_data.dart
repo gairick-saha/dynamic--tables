@@ -10,22 +10,48 @@ class _TableData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.horizontal(
-          left: Radius.circular(8.0),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              width: 150,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  tableGroup.rows.length,
-                  (rowIndex) => _TableCell(
+    return ClipRRect(
+      borderRadius: const BorderRadius.horizontal(
+        left: Radius.circular(8.0),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 150,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(
+                tableGroup.rows.length + 1,
+                (rowIndex) {
+                  if (rowIndex == tableGroup.rows.length) {
+                    return _TableCell(
+                      onTap: () {
+                        print('Add new row item');
+                      },
+                      cellWidth: 150,
+                      cellHeight: kMinInteractiveDimension,
+                      shape: NonUniformBorder(
+                        leftWidth: 8,
+                        rightWidth: 0.4,
+                        topWidth: 0.4,
+                        bottomWidth: 0.4,
+                        color: tableGroup.tableColor,
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "+ New Item",
+                          style: DefaultTextStyle.of(context).style.copyWith(
+                                fontSize: 14,
+                                color: Colors.blue,
+                              ),
+                        ),
+                      ),
+                    );
+                  }
+                  return _TableCell(
                     cellWidth: 150,
                     cellHeight: kMinInteractiveDimension,
                     shape: NonUniformBorder(
@@ -41,17 +67,47 @@ class _TableData extends StatelessWidget {
                         "Row : $rowIndex, column : 0",
                       ),
                     ),
-                  ),
-                ).toList(),
-              ),
+                  );
+                },
+              ).toList(),
             ),
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  tableGroup.rows.length,
-                  (rowIndex) => Row(
+          ),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(
+                tableGroup.rows.length + 1,
+                (rowIndex) {
+                  /// "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                  // if (rowIndex == tableGroup.rows.length) {
+                  //   return Row(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     children: List.generate(
+                  //       tableGroup.columns.length + 1,
+                  //       (columnIndex) => _TableCell(
+                  //         cellWidth: 100,
+                  //         cellHeight: kMinInteractiveDimension,
+                  //         shape: NonUniformBorder.all(
+                  //           width: 0.4,
+                  //           color: tableGroup.tableColor,
+                  //           borderRadius: BorderRadius.zero,
+                  //         ),
+                  //         // child: Padding(
+                  //         //   padding: const EdgeInsets.all(4.0),
+                  //         //   child: Center(
+                  //         //     child: Text(
+                  //         //       "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                  //         //       softWrap: true,
+                  //         //     ),
+                  //         //   ),
+                  //         // ),
+                  //         child: const SizedBox.shrink(),
+                  //       ),
+                  //     ),
+                  //   );
+                  // }
+                  return Row(
                     mainAxisSize: MainAxisSize.min,
                     children: List.generate(
                       tableGroup.columns.length + 1,
@@ -63,19 +119,23 @@ class _TableData extends StatelessWidget {
                           color: tableGroup.tableColor,
                           borderRadius: BorderRadius.zero,
                         ),
-                        child: Center(
-                          child: Text(
-                            "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Center(
+                            child: Text(
+                              "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                              softWrap: true,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ).toList(),
-              ),
+                  );
+                },
+              ).toList(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

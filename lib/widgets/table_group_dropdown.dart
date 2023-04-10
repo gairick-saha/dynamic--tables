@@ -6,6 +6,7 @@ class TableGroupDropdown extends StatefulWidget {
   const TableGroupDropdown({
     Key? key,
     required this.title,
+    this.subtitle,
     this.color = Colors.blue,
     this.initiallyExpanded = false,
     this.onExpansionChanged,
@@ -20,6 +21,7 @@ class TableGroupDropdown extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
+  final String? subtitle;
   final Color color;
   final bool initiallyExpanded;
   final ValueChanged<bool>? onExpansionChanged;
@@ -123,11 +125,27 @@ class _TableGroupDropdownState extends State<TableGroupDropdown>
                         ),
                       ),
                       const SizedBox(width: 5),
-                      Text(
-                        widget.title,
-                        style: DefaultTextStyle.of(context).style.apply(
-                              color: widget.color,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: DefaultTextStyle.of(context).style.copyWith(
+                                  fontSize: 16,
+                                  color: widget.color,
+                                ),
+                          ),
+                          if (widget.subtitle != null && !_isExpanded)
+                            Text(
+                              widget.subtitle!,
+                              style:
+                                  DefaultTextStyle.of(context).style.copyWith(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
                             ),
+                        ],
                       ),
                     ],
                   ),
