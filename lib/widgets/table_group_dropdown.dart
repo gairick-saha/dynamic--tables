@@ -163,23 +163,21 @@ class _TableGroupDropdownState extends State<TableGroupDropdown>
                           cellWidth: widget.cellWidth,
                           onTap: widget.onAddNewColumnPressed,
                           child: _isExpanded
-                              ? Center(
-                                  child: Text(
-                                    "+ Add Column",
-                                    style: DefaultTextStyle.of(context)
-                                        .style
-                                        .copyWith(
-                                          fontSize: 14,
-                                          color: Colors.blue,
-                                        ),
-                                  ),
+                              ? Text(
+                                  "+ Add Column",
+                                  style: DefaultTextStyle.of(context)
+                                      .style
+                                      .copyWith(
+                                        fontSize: 14,
+                                        color: Colors.blue,
+                                      ),
                                 )
                               : const SizedBox.shrink(),
                         );
                       }
                       return _TableCell(
-                        cellHeight: widget.cellHeight,
-                        cellWidth: widget.cellWidth,
+                        cellHeight: widget.columns[columnIndex].cellHeight,
+                        cellWidth: widget.columns[columnIndex].cellWidth,
                         child: _isExpanded
                             ? widget.columns[columnIndex].child
                             : const SizedBox.shrink(),

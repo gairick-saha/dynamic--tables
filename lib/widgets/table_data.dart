@@ -63,7 +63,7 @@ class _TableData extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "Row : ${rowIndex + 1}, column : 0",
+                        "Item ${rowIndex + 1}",
                       ),
                     ),
                   );
@@ -85,23 +85,23 @@ class _TableData extends StatelessWidget {
                       children: List.generate(
                         tableGroup.columns.length + 1,
                         (columnIndex) => _TableCell(
-                          cellWidth: 100,
+                          cellWidth: 120,
                           cellHeight: kMinInteractiveDimension,
                           shape: NonUniformBorder.all(
                             width: 0.4,
                             color: tableGroup.tableColor,
                             borderRadius: BorderRadius.zero,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Center(
-                              child: Text(
-                                "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
-                                softWrap: true,
-                              ),
-                            ),
-                          ),
-                          // child: const SizedBox.shrink(),
+                          // child: Padding(
+                          //   padding: const EdgeInsets.all(4.0),
+                          //   child: Center(
+                          //     child: Text(
+                          //       "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                          //       softWrap: true,
+                          //     ),
+                          //   ),
+                          // ),
+                          child: const SizedBox.shrink(),
                         ),
                       ),
                     );
@@ -111,22 +111,22 @@ class _TableData extends StatelessWidget {
                     children: List.generate(
                       tableGroup.columns.length + 1,
                       (columnIndex) => _TableCell(
-                        cellWidth: 100,
+                        cellWidth: 120,
                         cellHeight: kMinInteractiveDimension,
                         shape: NonUniformBorder.all(
                           width: 0.4,
                           color: tableGroup.tableColor,
                           borderRadius: BorderRadius.zero,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Center(
-                            child: Text(
-                              "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
-                              softWrap: true,
-                            ),
-                          ),
-                        ),
+                        child: columnIndex == tableGroup.columns.length
+                            ? const SizedBox.shrink()
+                            : Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
+                                  softWrap: true,
+                                ),
+                              ),
                       ),
                     ),
                   );

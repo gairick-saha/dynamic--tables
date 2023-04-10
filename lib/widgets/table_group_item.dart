@@ -41,7 +41,7 @@ class TableGroupItem extends StatelessWidget {
             subtitle: "${tableGroup.rows.length} items",
             onExpansionChanged: onExpansionChanged,
             initiallyExpanded: tableGroup.expanded,
-            cellWidth: 100,
+            cellWidth: 120,
             leftCellWidth: 150,
             onAddNewColumnPressed: () =>
                 context.read<DataCubit>().addNewColumn(tableGroup),

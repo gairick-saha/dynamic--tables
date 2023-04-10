@@ -42,45 +42,66 @@ class DataCubit extends Cubit<List<TableGroupModel>> {
       isExpanded: isExpanded,
     );
 
-    final List<TableGroupModel> alreadyExpandedTableGroups = tableGroupsList
-        .where(
-          (element) =>
-              element.expanded &&
-              element.tableId != tableGroupsList[itemIndex].tableId,
-        )
-        .toList();
+    // final List<TableGroupModel> alreadyExpandedTableGroups = tableGroupsList
+    //     .where(
+    //       (element) =>
+    //           element.expanded &&
+    //           element.tableId != tableGroupsList[itemIndex].tableId,
+    //     )
+    //     .toList();
 
-    if (tableGroupsList[itemIndex].expanded) {
-      if (alreadyExpandedTableGroups.isNotEmpty) {
-        for (var element in alreadyExpandedTableGroups) {
-          int indexOfModifiedTableGroup = tableGroupsList.indexOf(element);
-          tableGroupsList[indexOfModifiedTableGroup] =
-              element.copyWith(expanded: false);
-        }
-      }
-    }
+    // if (tableGroupsList[itemIndex].expanded) {
+    //   if (alreadyExpandedTableGroups.isNotEmpty) {
+    //     for (var element in alreadyExpandedTableGroups) {
+    //       int indexOfModifiedTableGroup = tableGroupsList.indexOf(element);
+    //       tableGroupsList[indexOfModifiedTableGroup] =
+    //           element.copyWith(expanded: false);
+    //     }
+    //   }
+    // }
 
     emit(tableGroupsList);
   }
 
   void addNewColumn(TableGroupModel tableGroup) {
     final List<TableGroupModel> tableGroupsList = List.from(state);
-    int tableGroupItemIndex = tableGroupsList.indexOf(tableGroup);
-    List<TableGroupItemColumn> allColumns = List.from(tableGroup.columns);
 
-    allColumns.add(
-      TableGroupItemColumn(
-        cellHeight: kMinInteractiveDimension,
-        cellWidth: 100,
-        child: Text("Row: 0 , Col: ${allColumns.length}"),
-      ),
-    );
+    final List<TableGroupModel> newList = tableGroupsList.map(
+      (e) {
+        List<TableGroupItemColumn> allColumns = List.from(e.columns);
+        allColumns.add(
+          TableGroupItemColumn(
+            cellHeight: kMinInteractiveDimension,
+            cellWidth: 120,
+            child: Text("Row: 0 , Col: ${allColumns.length}"),
+          ),
+        );
+        return e.copyWith(
+          columns: allColumns,
+        );
+      },
+    ).toList();
 
-    tableGroupsList[tableGroupItemIndex] = tableGroup.copyWith(
-      columns: allColumns,
-    );
+    emit(newList);
 
-    emit(tableGroupsList);
+    /// For Single Table Group Only
+    // final List<TableGroupModel> tableGroupsList = List.from(state);
+    // int tableGroupItemIndex = tableGroupsList.indexOf(tableGroup);
+    // List<TableGroupItemColumn> allColumns = List.from(tableGroup.columns);
+
+    // allColumns.add(
+    //   TableGroupItemColumn(
+    //     cellHeight: kMinInteractiveDimension,
+    //     cellWidth: 120,
+    //     child: Text("Row: 0 , Col: ${allColumns.length}"),
+    //   ),
+    // );
+
+    // tableGroupsList[tableGroupItemIndex] = tableGroup.copyWith(
+    //   columns: allColumns,
+    // );
+
+    // emit(tableGroupsList);
   }
 
   void addNewRow(TableGroupModel tableGroup) {
