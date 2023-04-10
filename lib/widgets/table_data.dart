@@ -36,7 +36,7 @@ class _TableData extends StatelessWidget {
                         rightWidth: 0.4,
                         topWidth: 0.4,
                         bottomWidth: 0.4,
-                        color: tableGroup.tableColor,
+                        color: tableGroup.tableColor.withOpacity(0.6),
                         borderRadius: BorderRadius.zero,
                       ),
                       child: Center(
@@ -63,7 +63,7 @@ class _TableData extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "Row : $rowIndex, column : 0",
+                        "Row : ${rowIndex + 1}, column : 0",
                       ),
                     ),
                   );
