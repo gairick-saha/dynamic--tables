@@ -42,6 +42,7 @@ class DataCubit extends Cubit<List<TableGroupModel>> {
       isExpanded: isExpanded,
     );
 
+    /// Uncomment the following for toggling alreadyExpandedTableGroups
     // final List<TableGroupModel> alreadyExpandedTableGroups = tableGroupsList
     //     .where(
     //       (element) =>
