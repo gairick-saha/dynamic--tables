@@ -78,7 +78,6 @@ class _TableData extends StatelessWidget {
               children: List.generate(
                 tableGroup.rows.length + 1,
                 (rowIndex) {
-                  /// "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
                   if (rowIndex == tableGroup.rows.length) {
                     return Row(
                       mainAxisSize: MainAxisSize.min,
@@ -92,15 +91,6 @@ class _TableData extends StatelessWidget {
                             color: tableGroup.tableColor,
                             borderRadius: BorderRadius.zero,
                           ),
-                          // child: Padding(
-                          //   padding: const EdgeInsets.all(4.0),
-                          //   child: Center(
-                          //     child: Text(
-                          //       "Row : ${rowIndex + 1}, column : ${columnIndex + 1}",
-                          //       softWrap: true,
-                          //     ),
-                          //   ),
-                          // ),
                           child: const SizedBox.shrink(),
                         ),
                       ),

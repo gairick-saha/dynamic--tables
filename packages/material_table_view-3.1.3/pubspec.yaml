@@ -1,0 +1,23 @@
+name: material_table_view
+description: Flutter library providing a both horizontally and vertically scrollable material-style table widget.
+
+repository: "https://github.com/NikolayNIK/material_table_view"
+issue_tracker: "https://github.com/NikolayNIK/material_table_view/issues"
+
+version: 3.1.3
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true

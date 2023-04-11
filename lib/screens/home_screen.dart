@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
-import 'package:reorderables/reorderables.dart';
 
 import '../cubits/data_cubit.dart';
 import '../models/models.dart';
-import '../widgets/bidirectional_scroll_view.dart';
 import '../widgets/table_group_item.dart';
 
 class HomeScreen extends StatefulWidget {

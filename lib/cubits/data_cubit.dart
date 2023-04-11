@@ -17,6 +17,17 @@ class DataCubit extends Cubit<List<TableGroupModel>> {
         tableId: tableGroupsList.length + 1,
         tableName: "Group ${tableGroupsList.length + 1}",
         tableColor: newTableColor,
+        columns: tableGroupsList.isEmpty
+            ? []
+            : tableGroupsList.last.columns.map(
+                (e) {
+                  return TableGroupItemColumn(
+                    cellHeight: e.cellHeight,
+                    cellWidth: e.cellWidth,
+                    child: e.child,
+                  );
+                },
+              ).toList(),
       ),
     );
 
